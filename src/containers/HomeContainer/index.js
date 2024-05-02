@@ -4,13 +4,13 @@ import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 
 import Home from '../../views/Home';
-import { makeSelectHomeContainerCounter } from './selector';
-import { incrementAction } from './action';
+import { makeSelectHomeContainerCounter } from '../CounterContainer/selector';
+import { decrementAction, incrementAction } from '../CounterContainer/action';
 import { useInjectReducer } from '../../utils/injectReducer';
 
-import reducer from './reducer';
+import reducer from '../CounterContainer/reducer';
 
-const key = 'homeContainer';
+const key = 'counterContainer';
 
 function HomeContainer(props) {
   useInjectReducer({ key, reducer });
@@ -26,6 +26,7 @@ export function mapDispatchToProps(dispatch) {
   return {
     dispatch,
     onIncrement: () => dispatch(incrementAction()),
+    onDecrement:() => dispatch(decrementAction())
   };
 }
 
